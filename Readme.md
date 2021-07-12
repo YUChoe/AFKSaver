@@ -21,6 +21,21 @@
 - Catching KeyBoard and Mouse events
 - Zigging every 30 seconds
 
+## Requirements 
+```
+MouseInfo==0.1.3
+Pillow==8.3.1
+PyAutoGUI==0.9.53
+PyGetWindow==0.0.9
+PyMsgBox==1.0.9
+pynput==1.7.3
+pyperclip==1.8.2
+PyRect==0.1.4
+PyScreeze==0.1.27
+PyTweening==1.0.3
+six==1.16.0
+```
+
 ## Build for win10_x64
 ```
 > .venv/Script/activate
