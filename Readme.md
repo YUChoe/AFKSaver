@@ -30,4 +30,4 @@
 ## Credit 
 made by YUChoe
 
-[Apache License](https://github.com/YUChoe/AFKSaver/blob/main/LICENSE)
+[Apache License 2.0](https://github.com/YUChoe/AFKSaver/blob/main/LICENSE)
