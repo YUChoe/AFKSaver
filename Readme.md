@@ -21,7 +21,6 @@
 - Catching KeyBoard and Mouse events
 - Zigging every 30 seconds
 
-## v1.2.1 - Get them while they're hot!
 ## Build for win10_x64
 ```
 > .venv/Script/activate
