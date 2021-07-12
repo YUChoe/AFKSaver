@@ -1,6 +1,8 @@
 # AFK Saver
  > opposite meanging of ScreenSaver 
- 
+
+![image](https://user-images.githubusercontent.com/819903/125231155-30f34600-e315-11eb-9239-112b24d38a07.png)
+
 ## Quote by David Mamet
  > You cannot learn how to write drama without writing plays, putting it on in front of an audience and getting humiliated.
 
