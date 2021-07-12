@@ -34,6 +34,7 @@ PyRect==0.1.4
 PyScreeze==0.1.27
 PyTweening==1.0.3
 six==1.16.0
+zstandard==0.15.2
 ```
 
 ## Build for win10_x64
