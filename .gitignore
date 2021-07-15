@@ -3,3 +3,10 @@
 *.onefile-build
 venv
 .venv
+.vscode
+
+*.cmd
+*.sh
+req.txt
+config.json
+*.exe
