@@ -1,0 +1,5 @@
+*.build
+*.dist
+*.onefile-build
+venv
+.venv
