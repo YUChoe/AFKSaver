@@ -8,12 +8,15 @@ import pyautogui
 from pynput import keyboard
 
 import tkinter as tk
+import ttkbootstrap as ttk
 import threading
 
 import json
 
 """
 # AFKSaver
+### v5 - 20230331
+  - merged with win_rearrange https://github.com/noizze-net/win_rearrange
 
 ### v4 - 20200715
   - Save and Load config.json
@@ -22,7 +25,7 @@ import json
   - RUN/STOP button has greenish/reddish colours
 """
 _appname = 'ASKSaver'
-_version = '4(20200710)'
+_version = '5(202300331)'
 
 
 # notepad_hwnd = None
@@ -132,7 +135,8 @@ class Main_App():
 
     def __init__(self, version=_version):
         self.conf = ConfigJSON(fn='config.json')
-
+        photo_ico = tk.PhotoImage(file='icon.png')
+        self.app.wm_iconphoto(False, photo_ico)
         self.app.title(f"{_appname} - v{_version}")
         window_width = 300
         window_height = 200
@@ -147,40 +151,40 @@ class Main_App():
         self.app.resizable(height=False, width=False)
 
         # init UI
-        status_label = tk.Label(self.app, text='Stopped')
+        status_label = ttk.Label(self.app, text='Stopped')
         status_label.pack(fill=tk.BOTH, expand=True)
         self.ui['status_label'] = status_label
 
         frame1 = tk.Frame(self.app)
         frame1.pack(anchor=tk.CENTER)
 
-        status_interval = tk.Label(frame1, text=f"interval[{self.conf['interval']}sec]")
+        status_interval = ttk.Label(frame1, text=f"interval[{self.conf['interval']}sec]")
         status_interval.pack(side='left')
 
-        status_cnt = tk.Label(frame1, text=f"CNT[0>{self.conf['counter']}]")
+        status_cnt = ttk.Label(frame1, text=f"CNT[0>{self.conf['counter']}]")
         status_cnt.pack(side='left')
         self.ui['status_cnt'] = status_cnt
-        status_mouse = tk.Label(frame1, text='M[None]')
+        status_mouse = ttk.Label(frame1, text='M[None]')
         status_mouse.pack(side='left')
         self.ui['status_mouse'] = status_mouse
-        status_kbd = tk.Label(frame1, text='K[None]')
+        status_kbd = ttk.Label(frame1, text='K[None]')
         status_kbd.pack(side='left')
         self.ui['status_kbd'] = status_kbd
 
-        frame2 = tk.Frame(self.app)
+        frame2 = ttk.Frame(self.app)
         frame2.pack(anchor=tk.CENTER)
 
         worktime_txt = 'W[{} - {}]'.format(self.conf['time_start_working'], self.conf['time_end_working'])
-        worktime_lbl = tk.Label(frame2, text=worktime_txt)
+        worktime_lbl = ttk.Label(frame2, text=worktime_txt)
         worktime_lbl.pack()
 
-        opt_button = tk.Button(self.app, text='RUN', bg='#41B199')
+        opt_button = ttk.Button(self.app, text='RUN', style='success') ## , bg='#41B199') green? TODO: button bg colour
         opt_button.bind('<Button-1>', self.opt_button_handler)
         opt_button.bind('<Double-Button-1>', self.opt_button_handler)
         opt_button.pack(fill=tk.BOTH, expand=True)
         self.ui['opt_button'] = opt_button
 
-        notepad = tk.Text(self.app, height=1, borderwidth=0)
+        notepad = ttk.Text(self.app, height=1, borderwidth=0)
         notepad.pack(fill=tk.BOTH, expand=True)
         self.ui['notepad'] = notepad
 
@@ -198,13 +202,15 @@ class Main_App():
             self._thread_handler.start()
             self.set_status('deactivate')
             self.ui['opt_button']['text'] = 'STOP'
-            self.ui['opt_button']['bg'] = '#FF6F4F'
+            # self.ui['opt_button']['bg'] = '#FF6F4F'
+            self.ui['opt_button'].configure(bootstyle="danger")
         else:
             self._thread_handler.kill()
             del self._thread_handler
             self.set_status('stop')
             self.ui['opt_button']['text'] = 'RUN'
-            self.ui['opt_button']['bg'] = '#41B199'
+            # self.ui['opt_button']['bg'] = '#41B199'
+            self.ui['opt_button'].configure(bootstyle="success")
 
     def focus(self):
         self.app.focus_force()
